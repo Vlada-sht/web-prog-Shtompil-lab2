@@ -1,5 +1,7 @@
+{% load static %}
 <div style="border: 1px solid #ccc; padding: 15px; border-radius: 8px; margin-bottom: 15px; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
     <h3 style="margin-top: 0; color: #6a0dad;">{{ place.name }}</h3>
+    <img src="{% static 'places/images/default.jpg' %}" alt="Фото місця" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 10px;">
     <p><strong>Тип:</strong> {{ place.type }}</p>
     <p><strong>Локація:</strong> 
         {% if not place.location %}

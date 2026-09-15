@@ -1,0 +1,42 @@
+{% extends 'places/base.html' %}
+{% load static %}
+
+{% block title %}{{ place.name }} - Деталі{% endblock %}
+
+{% block content %}
+    <a href="/places/" style="text-decoration: none; color: #6a0dad;">← Повернутися до списку</a>
+    
+    {% if place %}
+        <div style="margin-top: 20px; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <h1 style="color: #6a0dad; margin-top: 0;">{{ place.name }}</h1>
+            
+            <!-- Наша картинка вже тут! -->
+            <img src="{% static 'places/images/default.jpg' %}" alt="Фото місця" style="width: 100%; max-height: 350px; object-fit: cover; border-radius: 8px; margin: 15px 0;">
+            
+            <p><strong>Тип:</strong> {{ place.type }}</p>
+            <p><strong>Локація:</strong> 
+                {% if not place.location %}
+                    <span style="color: gray; font-style: italic;">Secret place👀</span>
+                {% else %}
+                    {{ place.location }}
+                {% endif %}
+            </p>
+            <p><strong>Рейтинг:</strong> 
+                {% for i in "12345" %}
+                    {% if forloop.counter <= place.rating %}⭐{% endif %}
+                {% endfor %}
+            </p>
+            
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+            
+            <h3>Опис:</h3>
+            <p style="line-height: 1.6;">{{ place.desc }}</p>
+            
+            <p style="color: gray; font-size: 0.9rem; margin-top: 30px;">Додано: {{ place.date }}</p>
+        </div>
+    {% else %}
+        <h2>Помилка 404</h2>
+        <p>На жаль, таке місце не знайдено.</p>
+    {% endif %}
+
+{% endblock %}
