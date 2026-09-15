@@ -1,0 +1,38 @@
+{% extends 'places/base.html' %}
+
+{% block title %}Додати місце{% endblock %}
+
+{% block content %}
+    <h1>Додати нове місце ➕</h1>
+    
+    <form method="POST" style="display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin-top: 20px;">
+        {% csrf_token %} 
+
+        <label>
+            <strong>Назва місця (обов'язково):</strong><br>
+            <input type="text" name="name" required style="width: 100%; padding: 8px;">
+        </label>
+
+        <label>
+            <strong>Тип (кафе, кіно, парк...):</strong><br>
+            <input type="text" name="type" required style="width: 100%; padding: 8px;">
+        </label>
+
+        <label>
+            <strong>Локація (залиште порожнім для Secret place):</strong><br>
+            <input type="text" name="location" style="width: 100%; padding: 8px;">
+        </label>
+
+        <label>
+            <strong>Рейтинг (від 1 до 5):</strong><br>
+            <input type="number" name="rating" min="1" max="5" required style="width: 100%; padding: 8px;">
+        </label>
+
+        <label>
+            <strong>Опис:</strong><br>
+            <textarea name="desc" rows="4" required style="width: 100%; padding: 8px;"></textarea>
+        </label>
+
+        <button type="submit" class="btn" style="font-size: 1.1rem;">Зберегти місце</button>
+    </form>
+{% endblock %}
