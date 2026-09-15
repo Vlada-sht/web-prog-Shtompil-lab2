@@ -40,3 +40,9 @@ def add_place(request):
         return redirect('place_list')
         
     return render(request, 'places/add.html')
+
+def place_detail(request, place_id):
+    places = get_places(request)
+    place = next((p for p in places if p['id'] == place_id), None)
+    
+    return render(request, 'places/detail.html', {'place': place})
