@@ -1,0 +1,17 @@
+<div style="border: 1px solid #ccc; padding: 15px; border-radius: 8px; margin-bottom: 15px; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+    <h3 style="margin-top: 0; color: #6a0dad;">{{ place.name }}</h3>
+    <p><strong>Тип:</strong> {{ place.type }}</p>
+    <p><strong>Локація:</strong> 
+        {% if not place.location %}
+            <span style="color: gray; font-style: italic;">Secret place👀</span>
+        {% else %}
+            {{ place.location }}
+        {% endif %}
+    </p>
+    <p><strong>Рейтинг:</strong> 
+        {% for i in "12345" %}
+            {% if forloop.counter <= place.rating %}⭐{% endif %}
+        {% endfor %}
+    </p>
+    <p><strong>Опис:</strong> {{ place.desc|truncatewords:5 }}</p>
+</div>
