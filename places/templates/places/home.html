@@ -1,0 +1,30 @@
+{% extends 'places/base.html' %}
+
+{% block title %}Головна - Куди піти?{% endblock %}
+
+{% block content %}
+    <h1>Вітаємо на сайті ваших улюблених місць! 🍕🌳</h1>
+    <p>Тут ви можете зберігати свої улюблені локації для відпочинку та вечері, а також просити сайт випадковим чином підказати, куди піти сьогодні.</p>
+    
+    <div style="margin-top: 30px; padding: 30px; background: #e9ecef; border-radius: 8px; text-align: center;">
+        <h3>Не знаєте куди піти?</h3>
+        
+        {% if has_places %}
+            <form method="GET" action="/">
+                <button type="submit" name="random" value="true" class="btn" style="font-size: 1.2rem; padding: 15px 30px;">Куди піти сьогодні? 🎲</button>
+            </form>
+            
+            {% if random_place %}
+                <div style="margin-top: 30px; text-align: left; max-width: 500px; margin-left: auto; margin-right: auto;">
+                    <h4 style="text-align: center; color: #d84315;">Сьогодні йдемо сюди:</h4>
+                    {% include 'places/place_preview.html' with place=random_place %}
+                </div>
+            {% endif %}
+            
+        {% else %}
+            <p>Ваш список поки порожній. Додайте хоча б одне місце, щоб рулетка запрацювала!</p>
+            <br>
+            <a href="/add/" class="btn">Додати перше місце</a>
+        {% endif %}
+    </div>
+{% endblock %}
